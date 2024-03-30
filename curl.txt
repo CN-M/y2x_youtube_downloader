@@ -5,3 +5,5 @@ curl -X POST http://localhost:3000/download -H 'Content-Type: application/json' 
 curl -X POST http://localhost:3000/download -H 'Content-Type: application/json' -d '{"url": "https://youtu.be/19PkX_xz8PU?si=RAbWPPRFFIkgbAOc"}'
 
 curl -X POST http://localhost:3000/download -H 'Content-Type: application/json' -d '{"url": "https://youtube.com/shorts/MtKIaYFpWSQ?si=TDNz261kbeT-iLC-"}'
+
+curl -X POST -H "Content-Type: application/json" -d '{"url": "https://www.youtube.com/watch?v=VIDEO_ID"}' http://localhost:8000/download --output downloaded_video.mp4

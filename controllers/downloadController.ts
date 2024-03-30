@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { download } from "../util/download";
+import { download } from "../utils/download";
 
 export const downloadVideo = async (req: Request, res: Response) => {
   try {

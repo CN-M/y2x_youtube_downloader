@@ -8,8 +8,8 @@
     "build": "npx tsc",
     "watch": "npx tsc --watch",
     "start": "node dist/server.js",
-    "dev": "nodemon server.ts",
-    "exec": "concurrently \"npx tsc --watch\" \"ts-node server.ts\""
+    "dev": "concurrently \"npx tsc --watch\" \"ts-node server.ts\"",
+    "exec": "nodemon server.ts"
   },
   "keywords": [],
   "author": "",

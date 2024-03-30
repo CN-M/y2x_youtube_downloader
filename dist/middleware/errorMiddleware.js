@@ -24,4 +24,3 @@ const errorHandler = (err, req, res, next) => {
     });
 };
 exports.errorHandler = errorHandler;
-// module.exports = { catch404, errorHandler };
