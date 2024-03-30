@@ -24,7 +24,7 @@ app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use("/", downloadRoute);
+app.use("/download", downloadRoute);
 
 // Error Middleware
 app.use(catch404);

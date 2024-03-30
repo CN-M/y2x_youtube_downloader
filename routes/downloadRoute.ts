@@ -2,15 +2,8 @@ import express from "express";
 
 const router = express.Router();
 
-import {
-  createPost,
-  deletePost,
-  getAllPosts,
-  updatePost,
-} from "../controllers/downloadController";
+import { downloadVideo } from "../controllers/downloadController";
 
-router.route("/").get(getAllPosts).post(createPost);
-
-router.route("/:id").put(updatePost).delete(deletePost);
+router.route("/").post(downloadVideo);
 
 export default router;

@@ -1,48 +1,24 @@
 import { Request, Response } from "express";
-import { prisma } from "../config/db";
+import { download } from "../util/download";
 
-export const getAllPosts = async (req: Request, res: Response) => {
-  const posts = await prisma.post.findMany({
-    where: { published: true },
-    include: { author: true },
-  });
+export const downloadVideo = async (req: Request, res: Response) => {
+  try {
+    // Extract URL from request body
+    const { url } = req.body;
 
-  res.status(200).json(posts);
-};
+    // Check if URL is provided
+    if (!url) {
+      return res.status(400).json({ error: "URL is required" });
+    }
 
-export const createPost = async (req: Request, res: Response) => {
-  const { content, email } = req.body;
+    // Call download function
+    await download(url);
 
-  const post = await prisma.post.create({
-    data: {
-      content,
-      author: { connect: { email } },
-    },
-  });
-
-  res.status(200).json(post);
-};
-
-export const updatePost = async (req: Request, res: Response) => {
-  const { id, content, published } = req.body;
-
-  const updatedPost = await prisma.post.update({
-    where: { id: Number(id) },
-    data: {
-      published,
-      content,
-    },
-  });
-
-  res.status(200).json(updatedPost);
-};
-
-export const deletePost = async (req: Request, res: Response) => {
-  const { id } = req.body;
-
-  const deletedPost = await prisma.post.delete({
-    where: { id: Number(id) },
-  });
-
-  res.status(200).json(deletedPost);
+    // Respond with success message
+    return res.status(200).json({ message: "Video downloaded successfully" });
+  } catch (error) {
+    // Handle errors
+    console.error("Error occurred during video download:", error);
+    return res.status(500).json({ error: "Failed to download video" });
+  }
 };
