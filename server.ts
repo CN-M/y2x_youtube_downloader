@@ -2,7 +2,7 @@ import "colors";
 import compression from "compression";
 import cors from "cors";
 import dotenv from "dotenv";
-import express, { Express } from "express";
+import express, { Express, Request, Response } from "express";
 import helmet from "helmet";
 
 dotenv.config();
@@ -23,6 +23,10 @@ app.use(helmet());
 app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.get("/", (req: Request, res: Response) => {
+  res.status(200).json({ message: "Welcome to the Thunderdome" });
+});
 
 app.use("/download", downloadRoute);
 
